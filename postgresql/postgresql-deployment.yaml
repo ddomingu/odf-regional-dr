@@ -3,18 +3,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    appname: postgresql
+    app: postgresql
   name: postgresql
 spec:
   selector:
     matchLabels:
-      appname: postgresql
+      app: postgresql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        appname: postgresql
+        app: postgresql
     spec:
       containers:
       - image: registry.redhat.io/rhel8/postgresql-12

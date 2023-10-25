@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: postgresql
   labels:
-    appname: postgresql
+    app: postgresql
 spec:
   ports:
   - name: postgresql

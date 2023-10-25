@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: postgresql
   labels:
-    appname: postgresql
+    app: postgresql
 spec:
   accessModes:
   - ReadWriteOnce
