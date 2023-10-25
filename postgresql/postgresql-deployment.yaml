@@ -6,6 +6,8 @@ metadata:
     app: postgresql
   name: postgresql
 spec:
+  securityContext:
+    fsGroupChangePolicy: "OnRootMismatch"
   selector:
     matchLabels:
       app: postgresql
