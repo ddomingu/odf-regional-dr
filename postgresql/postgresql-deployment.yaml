@@ -8,7 +8,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: postgresql
+      appname: postgresql
   strategy:
     type: Recreate
   template:
