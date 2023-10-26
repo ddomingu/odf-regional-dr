@@ -6,9 +6,6 @@ metadata:
     app: postgresql
   name: postgresql
 spec:
-  securityContext:
-    runAsNonRoot: true
-    runAsUser: 1000650000
   selector:
     matchLabels:
       app: postgresql
@@ -22,6 +19,9 @@ spec:
       containers:
       - image: registry.redhat.io/rhel8/postgresql-12
         name: postgresql
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
         env:
         - name: POSTGRESQL_USER
           valueFrom:
@@ -52,6 +52,7 @@ spec:
         volumeMounts:
           - name: postgresql-data
             mountPath: /var/lib/pgsql/data
+        serviceAccountName: "workaround2-postgresql"
       volumes:
       - name: postgresql-data
         persistentVolumeClaim:
