@@ -20,7 +20,6 @@ spec:
       - image: registry.redhat.io/rhel8/postgresql-12
         name: postgresql
         securityContext:
-          runAsNonRoot: true
           runAsUser: 1000
         env:
         - name: POSTGRESQL_USER
