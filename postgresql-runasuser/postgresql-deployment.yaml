@@ -16,6 +16,8 @@ spec:
       labels:
         app: postgresql
     spec:
+      serviceAccount: workaround2-postgresql
+      serviceAccountName: workaround2-postgresql
       containers:
       - image: registry.redhat.io/rhel8/postgresql-12
         name: postgresql
@@ -51,7 +53,6 @@ spec:
         volumeMounts:
           - name: postgresql-data
             mountPath: /var/lib/pgsql/data
-        serviceAccountName: "workaround2-postgresql"
       volumes:
       - name: postgresql-data
         persistentVolumeClaim:
