@@ -6,8 +6,6 @@ metadata:
     app: postgresql
   name: postgresql
 spec:
-  securityContext:
-    fsGroup: 1000
   selector:
     matchLabels:
       app: postgresql
@@ -25,6 +23,7 @@ spec:
         name: postgresql
         securityContext:
           runAsUser: 1000
+          fsGroup: 1000
         env:
         - name: POSTGRESQL_USER
           valueFrom:
