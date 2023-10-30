@@ -16,14 +16,14 @@ spec:
       labels:
         app: postgresql
     spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
       serviceAccount: workaround2-postgresql
       serviceAccountName: workaround2-postgresql
       containers:
       - image: registry.redhat.io/rhel8/postgresql-12
         name: postgresql
-        securityContext:
-          runAsUser: 1000
-          fsGroup: 1000
         env:
         - name: POSTGRESQL_USER
           valueFrom:
