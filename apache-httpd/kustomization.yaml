@@ -1,0 +1,6 @@
+---
+resources:
+- apache-httpd-pvc.yaml
+- apache-httpd-deployment.yaml
+- apache-httpd-service.yaml
+- apache-httpd-route.yaml
