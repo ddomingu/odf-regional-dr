@@ -1,0 +1,60 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: postgresql
+  name: postgresql
+spec:
+  selector:
+    matchLabels:
+      app: postgresql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgresql
+    spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      serviceAccount: sa-test-role-postgresql
+      serviceAccountName: sa-test-role-postgresql
+      containers:
+      - image: registry.redhat.io/rhel8/postgresql-12
+        name: postgresql
+        env:
+        - name: POSTGRESQL_USER
+          valueFrom:
+            secretKeyRef:
+              key: database-user
+              name: postgresql
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-password
+              name: postgresql
+        - name: POSTGRESQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              key: database-name
+              name: postgresql
+        - name: POSTGRESQL_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-root-password
+              name: postgresql
+        ports:
+        - containerPort: 5432
+          name: postgresql
+        resources:
+          limits:
+            memory: 512Mi
+        volumeMounts:
+          - name: postgresql-data
+            mountPath: /var/lib/pgsql/data
+      volumes:
+      - name: postgresql-data
+        persistentVolumeClaim:
+          claimName: postgresql
