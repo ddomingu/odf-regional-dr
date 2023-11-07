@@ -15,7 +15,7 @@ spec:
     metadata:
       name: '{{cluster.name}}-oadp'
     spec:
-      project: cluster-config
+      project: default
       source:
         repoURL: https://github.com/ddomingu/odf-regional-dr.git
         targetRevision: main
