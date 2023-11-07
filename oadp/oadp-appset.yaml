@@ -1,0 +1,25 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: oadp-prod-bck
+  namespace: openshift-gitops
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/ddomingu/odf-regional-dr.git
+      revision: main
+      files:
+      - path: "oadp/cluster-definition/**/cluster.yaml"
+  template:
+    metadata:
+      name: '{{cluster.name}}-oadp'
+    spec:
+      project: cluster-config
+      source:
+        repoURL: https://github.com/ddomingu/odf-regional-dr.git
+        targetRevision: main
+        path: oadp/components/overlays/{{cluster.name}}
+      destination:
+        server: '{{cluster.address}}'
+      syncPolicy: {}
