@@ -3,9 +3,9 @@ kind: Kustomization
 bases:
 - ../../base/
 
-#patches:
-#- target:
-#    group: velero.io
-#    version: v1
-#    kind: BackupStorageLocation
-#  path: patch-bsl-prefix.yaml
+patches:
+- target:
+    group: velero.io
+    version: v1
+    kind: BackupStorageLocation
+  path: patch-bsl-prefix.yaml
