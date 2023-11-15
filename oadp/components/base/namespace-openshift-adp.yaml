@@ -1,6 +1,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  annotations:
-    argocd.argoproj.io/hook: PreSync
   name: openshift-adp
