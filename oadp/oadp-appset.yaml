@@ -22,4 +22,11 @@ spec:
         path: oadp/components/overlays/{{cluster.name}}
       destination:
         server: '{{cluster.address}}'
-      syncPolicy: {}
+        namespace: openshift-adp
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - PruneLast=true
